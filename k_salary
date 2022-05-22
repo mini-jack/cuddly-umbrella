@@ -1,0 +1,18 @@
+//  Give an array of salaries. The total salary has a budget. At the beginning, the total salary of employees is larger than the budget. It is required to find the number k, and reduce all the salaries larger than k to k, such that the total salary is exactly equal to the budget.
+// https://leetcode.com/discuss/interview-question/351313/Google-or-Phone-Screen-or-Salary-Adjustment
+
+
+var curSalaries = [100, 300, 200, 400, 100]
+var budget = 800
+
+var minSalary = 0
+
+minSalary = salaryCalculator(salaries: curSalaries, budget: budget)
+
+func salaryCalculator(salaries: Array<Int>, budget: Int)-> Int {
+        var k = budget/salaries.count
+        let underMean = salaries.filter{$0<=k}
+        let upperMean = salaries.filter{$0>k}
+        k = (budget - underMean.reduce(0, +))/upperMean.count
+    return k
+}
